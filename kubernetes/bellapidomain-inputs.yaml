@@ -1,0 +1,33 @@
+version: create-weblogic-domain-inputs-v1
+adminPort: 7001
+adminServerName: admin-server
+domainName: APIDomain 
+domainUID: bellapidomain
+clusterType: DYNAMIC
+startupControl: AUTO
+clusterName: bellapicluster 
+configuredManagedServerCount: 4
+initialManagedServerReplicas: 2
+managedServerNameBase: MS-API-
+managedServerPort: 8001
+weblogicDomainStorageType: HOST_PATH
+weblogicDomainStoragePath: /storage/weblogic/DOMAIN
+weblogicDomainStorageReclaimPolicy: Retain
+weblogicDomainStorageSize: 10Gi
+productionModeEnabled: true
+weblogicCredentialsSecretName: bellapidomain-credentials
+
+#weblogicImagePullSecretName:
+
+t3ChannelPort: 30012
+t3PublicAddress: ilcepoc180.corp.amdocs.com
+exposeAdminT3Channel: true
+adminNodePort: 30701
+exposeAdminNodePort: true
+namespace: bellapidomain
+loadBalancer: TRAEFIK
+loadBalancerAppPrepath: /
+loadBalancerVolumePath:
+loadBalancerWebPort: 30305
+loadBalancerDashboardPort: 30315
+javaOptions: -Dweblogic.StdoutDebugEnabled=false
