@@ -11,9 +11,14 @@ metadata:
     weblogic.domainUID: %DOMAIN_UID%
     weblogic.domainName: %DOMAIN_NAME%
 spec:
-#  storageClassName: %DOMAIN_UID%-weblogic-domain-storage-class
+  storageClassName: %DOMAIN_UID%-weblogic-domain-storage-class
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: %WEBLOGIC_DOMAIN_STORAGE_SIZE%
+  selector:
+    matchLabels:
+      weblogic.resourceVersion: domain-v1
+      weblogic.domainUID: %DOMAIN_UID%
+      weblogic.domainName: %DOMAIN_NAME%

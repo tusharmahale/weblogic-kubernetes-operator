@@ -214,6 +214,7 @@ data:
         set('FileName', '/shared/logs/%s.log' % name)
     else:
       print('Configuring Dynamic Cluster %s' % cluster_name)
+
       templateName = cluster_name + "-template"
       print('Creating Server Template: %s' % templateName)
       st1=create(templateName, 'ServerTemplate')
@@ -223,6 +224,8 @@ data:
       cmo.setListenAddress('%DOMAIN_UID%-%MANAGED_SERVER_NAME_BASE%${id}')
       cmo.setCluster(cl)
       print('Done setting attributes for Server Template: %s' % templateName);
+
+
       cd('/Clusters/%s' % cluster_name)
       create(cluster_name, 'DynamicServers')
       cd('DynamicServers/%s' % cluster_name)
@@ -232,6 +235,7 @@ data:
       set('MaxDynamicClusterSize', number_of_ms)
       set('CalculatedListenPorts', false)
       set('Id', 1)
+
       print('Done setting attributes for Dynamic Cluster: %s' % cluster_name);
 
     # Write Domain
@@ -249,64 +253,6 @@ data:
     print 'Domain Updated'
     print 'Done'
 
-    # Update Domain - Create JDBC resources
-    
-    dsList="%MY_DS_LIST%"
-    readDomain(domain_path)
-    for dsName in dsList.split(','):
-      cd('/')
-      create(dsName, 'JDBCSystemResource')
-      cd('JDBCSystemResource/'+dsName+'/JdbcResource/'+dsName)
-      create('myJdbcDriverParams','JDBCDriverParams')
-      cd('JDBCDriverParams/NO_NAME_0')
-      set('DriverName','oracle.jdbc.OracleDriver')
-      set('URL','jdbc:oracle:thin:@172.23.240.40:1521:BMLDEV')
-      set('PasswordEncrypted', 'BMLDAPP101')
-      set('UseXADataSourceInterface', 'false')
-      create('myProps','Properties')
-      cd('Properties/NO_NAME_0')
-      create('user', 'Property')
-      cd('Property/user')
-      cmo.setValue('BMLDAPP101')
-      
-      cd('/JDBCSystemResource/'+dsName+'/JdbcResource/'+dsName)
-      create('myJdbcDataSourceParams','JDBCDataSourceParams')
-      cd('JDBCDataSourceParams/NO_NAME_0')
-      set('JNDIName', java.lang.String(dsName))
-      
-      cd('/JDBCSystemResource/'+dsName+'/JdbcResource/'+dsName)
-      create('myJdbcConnectionPoolParams','JDBCConnectionPoolParams')
-      cd('JDBCConnectionPoolParams/NO_NAME_0')
-      set('TestTableName','SQL SELECT 1 FROM DUAL')
-      print ("Datasource %s created successfully .." % dsName)
-
-    updateDomain()
-    closeDomain()
-
-    readDomain(domain_path)
-    for dsName in dsList.split(','):
-      assign('JDBCSystemResource', dsName, 'Target', cluster_name)
-
-    updateDomain()
-    closeDomain()
-
-    deploymentList="%MY_DEPLOYMENT_LIST%"
-    readDomain(domain_path)
-    for app in deploymentList.split(','):
-      appName=app.split('#')[0]
-      appPath=app.split('#')[1]
-      cd('/')
-      currentApp=create(appName, 'AppDeployment')
-      currentApp.setSourcePath(appPath)
-      assign('AppDeployment', appName, 'Target', cluster_name)
-      print("Deployed App %s" % appName)
-
-    updateDomain()
-    closeDomain()
-
-    print 'Successfully completed all deployments'
-    print 'Done'
-    
     # Exit WLST
     # =========
     exit()

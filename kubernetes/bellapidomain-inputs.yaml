@@ -1,19 +1,19 @@
 version: create-weblogic-domain-inputs-v1
 adminPort: 7001
 adminServerName: admin-server
-domainName: APIDomain 
+domainName: APIDomain
 domainUID: bellapidomain
 clusterType: DYNAMIC
 startupControl: AUTO
-clusterName: bellapicluster 
-configuredManagedServerCount: 4
+clusterName: bellapicluster
+configuredManagedServerCount: 14
 initialManagedServerReplicas: 2
 managedServerNameBase: MS-API-
 managedServerPort: 8001
 weblogicDomainStorageType: HOST_PATH
-weblogicDomainStoragePath: /storage/weblogic/DOMAIN
+weblogicDomainStoragePath: /storage/weblogic/
 weblogicDomainStorageReclaimPolicy: Retain
-weblogicDomainStorageSize: 10Gi
+weblogicDomainStorageSize: 20Gi
 productionModeEnabled: true
 weblogicCredentialsSecretName: bellapidomain-credentials
 
@@ -31,3 +31,8 @@ loadBalancerVolumePath:
 loadBalancerWebPort: 30305
 loadBalancerDashboardPort: 30315
 javaOptions: -Dweblogic.StdoutDebugEnabled=false
+
+# Custom Parameters
+
+dataSources: "bladePool,dbAmdocsDS,dbAmdocsPrepDS"
+deployments: "UamsTransport#/shared/storage/API/packages/uams/UamsTransport.war,UamsEjbBasicLogin#/shared/storage/API/packages/uams/UamsEjbBasicLogin.jar,AddressMatchBean#/shared/storage/API/WL/bin/AddressMatchBean.jar,AddToConvBean#/shared/storage/API/WL/bin/AddToConvBean.jar,BanConvBean#/shared/storage/API/WL/bin/BanConvBean.jar,BanServicesBean#/shared/storage/API/WL/bin/BanServicesBean.jar,BillInformationBean#/shared/storage/API/WL/bin/BillInformationBean.jar,BpassSecurityServicesBean#/shared/storage/API/WL/bin/BpassSecurityServicesBean.jar,CRMServicesBean#/shared/storage/API/WL/bin/CRMServicesBean.jar,ChangeCtnConvBean#/shared/storage/API/WL/bin/ChangeCtnConvBean.jar,ChangeEsnConvBean#/shared/storage/API/WL/bin/ChangeEsnConvBean.jar,ChangeProfileConvBean#/shared/storage/API/WL/bin/ChangeProfileConvBean.jar,ConsoRegBean#/shared/storage/API/WL/bin/ConsoRegBean.jar,ContactServicesBean#/shared/storage/API/WL/bin/ContactServicesBean.jar,CorporateServicesBean#/shared/storage/API/WL/bin/CorporateServicesBean.jar,CsIvrBean#/shared/storage/API/WL/bin/CsIvrBean.jar,CustHierarchyBean#/shared/storage/API/WL/bin/CustHierarchyBean.jar,ECareProductBean#/shared/storage/API/WL/bin/ECareProductBean.jar,EnsembleGatewayBean#/shared/storage/API/WL/bin/EnsembleGatewayBean.jar,HierBillInfoConvBean#/shared/storage/API/WL/bin/HierBillInfoConvBean.jar,RDHierarchyBean#/shared/storage/API/WL/bin/RDHierarchyBean.jar,RdIvrBean#/shared/storage/API/WL/bin/RdIvrBean.jar,RefDataMngrBean#/shared/storage/API/WL/bin/RefDataMngrBean.jar,ReferToConvBean#/shared/storage/API/WL/bin/ReferToConvBean.jar,RegistrationDetailsBean#/shared/storage/API/WL/bin/RegistrationDetailsBean.jar,SearchServicesBean#/shared/storage/API/WL/bin/SearchServicesBean.jar,SysCtxBean#/shared/storage/API/WL/bin/SysCtxBean.jar,UpdateISPProdConvBean#/shared/storage/API/WL/bin/UpdateISPProdConvBean.jar,UserAuthenticationBean#/shared/storage/API/WL/bin/UserAuthenticationBean.jar,UserRegistrationConvBean#/shared/storage/API/WL/bin/UserRegistrationConvBean.jar,ISPProdConvBean#/shared/storage/API/WL/bin/ISPProdConvBean.jar,MCOChangeProfileConvBean#/shared/storage/API/WL/bin/MCOChangeProfileConvBean.jar,NewBanConvBean#/shared/storage/API/WL/bin/NewBanConvBean.jar,NewProdConvBean#/shared/storage/API/WL/bin/NewProdConvBean.jar,NumberMngmBean#/shared/storage/API/WL/bin/NumberMngmBean.jar,NxBanConvBean#/shared/storage/API/WL/bin/NxBanConvBean.jar,NxProductServicesBean#/shared/storage/API/WL/bin/NxProductServicesBean.jar,PagerBillInfoConvBean#/shared/storage/API/WL/bin/PagerBillInfoConvBean.jar,PaymentServicesBean#/shared/storage/API/WL/bin/PaymentServicesBean.jar,PrePaidServicesBean#/shared/storage/API/WL/bin/PrePaidServicesBean.jar,ProdConvBean#/shared/storage/API/WL/bin/ProdConvBean.jar,ProductServicesBean#/shared/storage/API/WL/bin/ProductServicesBean.jar,jutil#/shared/storage/API/packages/jutil/jutil.jar,jutil_v042_wl61sp5#/shared/storage/API/packages/jutil/jutil_v042_wl61sp5.jar,EJBSecurityCallbackBean#/shared/storage/API/WL/bin/EJBSecurityCallbackBean.jar,OrderServicesBean#/shared/storage/API/WL/bin/OrderServicesBean.jar,APILinkAdminControllerBean#/shared/storage/API/WL/bin/APILinkAdminControllerBean.jar,SubscriberServicesBean#/shared/storage/API/WL/bin/SubscriberServicesBean.jar,MCOServicesBean#/shared/storage/API/WL/bin/MCOServicesBean.jar,IPBBServicesBean#/shared/storage/API/WL/bin/IPBBServicesBean.jar"

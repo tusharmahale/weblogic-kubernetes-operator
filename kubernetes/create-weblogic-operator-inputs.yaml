@@ -22,7 +22,7 @@ targetNamespaces: bellapidomain
 # The docker image containing the operator code.
 # Ensure that the image is built or published to an appropriate registry
 # See https://github.com/oracle/weblogic-kubernetes-operator/blob/master/site/installation.md
-weblogicOperatorImage: wl-k8s-op:1.0
+weblogicOperatorImage: operator-custom:1.0
 
 # The image pull policy for the operator docker image.
 weblogicOperatorImagePullPolicy: IfNotPresent

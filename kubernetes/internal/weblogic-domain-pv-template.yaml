@@ -10,7 +10,7 @@ metadata:
     weblogic.domainUID: %DOMAIN_UID%
     weblogic.domainName: %DOMAIN_NAME%
 spec:
-#  storageClassName: %DOMAIN_UID%-weblogic-domain-storage-class
+  storageClassName: %DOMAIN_UID%-weblogic-domain-storage-class
   capacity:
     storage: %WEBLOGIC_DOMAIN_STORAGE_SIZE%
   accessModes:
