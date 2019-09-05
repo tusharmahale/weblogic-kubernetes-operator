@@ -17,7 +17,7 @@ namespace: weblogic-operator
 
 # A comma-separated list of target namespaces the operator manages
 # The names must be lowercase
-targetNamespaces: bellapidomain
+targetNamespaces: MYDOMAIN
 
 # The docker image containing the operator code.
 # Ensure that the image is built or published to an appropriate registry
