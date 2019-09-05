@@ -2,7 +2,7 @@ version: create-weblogic-domain-inputs-v1
 adminPort: 7001
 adminServerName: admin-server
 domainName: weblogic_domain
-domainUID: bellapidomain 
+domainUID: MYDOMAIN 
 clusterType: DYNAMIC
 startupControl: AUTO
 clusterName: cluster-1
@@ -15,13 +15,13 @@ weblogicDomainStorageType: HOST_PATH
 weblogicDomainStorageReclaimPolicy: Retain
 weblogicDomainStorageSize: 10Gi
 productionModeEnabled: true
-weblogicCredentialsSecretName: bellapidomain-credentials
+weblogicCredentialsSecretName: MYDOMAIN-credentials
 t3ChannelPort: 30012
-t3PublicAddress: ilcepoc180.corp.amdocs.com
+t3PublicAddress: MY_MACHINE_DETAILS
 exposeAdminT3Channel: true
 adminNodePort: 30701
 exposeAdminNodePort: true
-namespace: bellapidomain
+namespace: MYDOMAIN
 loadBalancer: TRAEFIK
 loadBalancerAppPrepath: /
 loadBalancerVolumePath:
